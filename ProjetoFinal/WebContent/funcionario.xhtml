@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="conteudo">
+		<h:form>
+			<p:growl id="msgs" showDetail="true" />
+			<p:fieldset legend="Novo Funcionário">
+
+				<p:panelGrid columns="4">
+
+					<h:outputLabel value="Nome:" for="nome" />
+					<h:inputText id="nome" value="#{funcionarioMB.funcionario.nome}">
+					</h:inputText>
+
+					<h:outputLabel value="Cargo: " for="cargo" />
+					<h:inputText id="cargo" value="#{funcionarioMB.funcionario.cargo}" />
+
+					<h:outputLabel value=" Matrícula: " for="matricula" />
+					<h:inputText id="matricula"
+						value="#{funcionarioMB.funcionario.matricula}" />
+
+					<h:outputLabel value="CPF: " for="cpf" />
+					<h:inputText id="cpf" value="#{funcionarioMB.funcionario.CPF}" />
+
+					<h:outputLabel value="Ramal:" for="ramal" />
+					<h:inputText id="ramal"
+						value="#{funcionarioMB.funcionario.telefone}" />
+
+					<h:outputLabel value="Email:" for="email" />
+					<h:inputText id="email" value="#{funcionarioMB.funcionario.email}" />
+
+
+					<h:outputLabel value="Senha:" for="senha" />
+					<h:inputText id="senha" value="#{funcionarioMB.funcionario.senha}">
+						<f:passThroughAttribute name="type" value="password" />
+
+					</h:inputText>
+
+				</p:panelGrid>
+
+				<p:commandButton value="Cadastrar" action="#{funcionarioMB.gravar()}"
+					style="margin-left:57%;margin-top:10px;" />
+
+			</p:fieldset>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+</html>

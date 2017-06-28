@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 
+Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="conteudo">
+		<h:form id="form">
+
+			<p:growl id="msgs" showDetail="true" />
+			<p:fieldset legend="Nova cautela">
+				<p:panelGrid columns="6">
+
+					<h:outputLabel value="Funcionario:" for="funcionario" />
+					<h:inputText id="funcionario"
+						value="#{loginMB.funcionarioLogado.nome}">
+					</h:inputText>
+
+					<h:outputLabel value="Data de Inicio:" for="dataInicio" />
+					<h:inputText id="dataInicio"
+						value="#{emprestimoMB.cautela.dataInicio}">
+						<f:convertDateTime pattern="dd/mm/yyyy" />
+					</h:inputText>
+
+					<h:outputLabel value="Data Fim: " for="dataFim" />
+					<h:inputText id="dataFim" value="#{emprestimoMB.cautela.dataFim}">
+						<f:convertDateTime pattern="dd/mm/yyyy" />
+					</h:inputText>
+
+					<p:outputPanel id="CarDetail" style="text-align:center;"
+						rendered="#{not empty emprestimoMB.mat}">
+						<p:commandButton value="Selecionar Material" type="button"
+							onclick="PF('dlg').show();" />
+					</p:outputPanel>
+
+					<h:outputText value="Material selecionado:"
+						style="margin-left:15px;" />
+					<h:outputText value="#{emprestimoMB.mat.nomenclatura}" />
+
+					<p:commandButton value="Finalizar"
+						action="#{emprestimoMB.emprestarMaterial()}"
+						style="margin-left:15px;" />
+
+
+				</p:panelGrid>
+
+				<p:dialog header="Lista de materiais" widgetVar="dlg" modal="true"
+					height="400">
+					<p:dataTable id="radioDT" value="#{emprestimoMB.listaMateriais}"
+						var="mat" border="1" converter="omnifaces.SelectItemsConverter" selection="#{emprestimoMB.mat}"
+						rowKey="#{mat.id}" >
+
+						<f:facet name="header">
+				            Selecione o material
+				        </f:facet>
+						<p:column selectionMode="single"
+							style="width:16px;text-align:center" />
+						<p:column headerText="Nome" sortBy="#{mat.nomenclatura} "
+							filterBy="#{mat.nomenclatura}"  converter="materialConverter" filterMatchMode="startsWith">
+							<h:outputText value="#{mat.nomenclatura}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Categoria " />
+							</f:facet>
+							<h:outputText value="#{mat.categoria}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Setor " />
+							</f:facet>
+							<h:outputText value="#{mat.setor}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Fornecedor " />
+							</f:facet>
+							<h:outputText value="#{mat.fornecedor}" />
+						</p:column>
+						<f:facet name="footer">
+							<p:commandButton process="radioDT" update="form:CarDetail"
+								icon="ui-icon-search" value="Selecionar" onclick="dlg.hide()" />
+						</f:facet>
+
+					</p:dataTable>
+				</p:dialog>
+			</p:fieldset>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 
+Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="conteudo">
+		<h:form>
+			<p:growl id="msgs" showDetail="true" />
+			<p:fieldset legend="Novo Material">
+				<p:panelGrid columns="4">
+
+
+					<h:outputLabel value="Nomenclatura:" for="nomenclatura" />
+					<h:inputText id="nomenclatura"
+						value="#{materialMB.material.nomenclatura}">
+					</h:inputText>
+
+					<h:outputLabel value="Nº de Série: " for="nserie" />
+					<h:inputText id="nserie" value="#{materialMB.material.numSerie}" />
+
+					<h:outputLabel value=" Valor: " for="valor" />
+					<h:inputText id="valor" value="#{materialMB.material.valor}" />
+
+					<h:outputLabel value=" Estado do Material: " for="estadomaterial" />
+					<h:inputText id="estadomaterial"
+						value="#{materialMB.material.estadoMaterial}" />
+
+					<h:outputLabel value="Data de Aquisição:" for="dataAquisicao" />
+					<h:inputText id="dataAquisicao"
+						value="#{materialMB.material.dataAquisicao}">
+						<f:convertDateTime pattern="dd/mm/yyyy" />
+					</h:inputText>
+
+				</p:panelGrid>
+			</p:fieldset>
+
+			<p:fieldset>
+				<h:panelGrid columns="3">
+					<!--  Dropdown categoria -->
+					<p:outputLabel value="Categoria: " for="categoria" />
+					<p:selectOneMenu value="#{materialMB.categoriaId}"
+						converter="omnifaces.SelectItemsConverter" id="categoria"
+						style="width:200px">
+						<f:selectItem itemLabel="Selecionar Categoria" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{materialMB.categorias}" var="categoria"
+							itemLabel="#{categoria.nomeCategoria}"
+							itemValue="#{categoria.id}" />
+
+
+					</p:selectOneMenu>
+					<!-- End dropdown categoria -->
+
+					<!--  Dropdown setor -->
+					<p:outputLabel for="setor" value="Setor: " />
+					<p:selectOneMenu id="setor" value="#{materialMB.setorId}"
+						converter="omnifaces.SelectItemsConverter" style="width:200px">
+						<f:selectItem itemLabel="Selecionar Setor" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{materialMB.setores}" var="setor"
+							itemLabel="#{setor.nomeSetor}" itemValue="#{setor.id}" />
+					</p:selectOneMenu>
+					<!-- End dropdown setor -->
+
+					<!--  Dropdown fornecedor -->
+					<p:outputLabel for="fornecedor" value="Fornecedor: " />
+					<p:selectOneMenu id="fornecedor" value="#{materialMB.fornecedorId}"
+						converter="omnifaces.SelectItemsConverter" style="width:200px">
+						<f:selectItem itemLabel="Selecionar Fornecedor" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{materialMB.fornecedores}" var="fornecedor"
+							itemLabel="#{fornecedor.razaoSocial}"
+							itemValue="#{fornecedor.id}" />
+					</p:selectOneMenu>
+					<!-- End dropdown fornecedor -->
+
+
+				</h:panelGrid>
+
+
+				<p:commandButton value="Gravar" action="#{materialMB.gravar()}"
+					style="margin-left:57%;margin-top:10px;" />
+			</p:fieldset>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+</html>

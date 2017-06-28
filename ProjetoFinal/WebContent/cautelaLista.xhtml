@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="conteudo">
+		<h:form id="formTabelaCautela">
+			<p:dataTable value="#{emprestimoMB.cautelas}" var="caut"
+				border="1">
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Codigo " />
+					</f:facet>
+					<h:outputText value="#{caut.id}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Data Inicio" />
+					</f:facet>
+					<h:outputText value="#{caut.dataInicio}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Data Fim" />
+					</f:facet>
+					<h:outputText value="#{caut.dataFim}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Funcionario " />
+					</f:facet>
+					<h:outputText value="#{caut.funcionario}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Material " />
+					</f:facet>
+					<h:outputText value="#{caut.material.nomenclatura}" />
+				</p:column>
+					<p:column>
+					<f:facet name="header">
+						<h:outputText value="Recusar" />
+					</f:facet>
+					<h:commandLink action="#{emprestimoMB.recusar()}"
+						value="Recusar" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Autorizar" />
+					</f:facet>
+					<h:commandLink action="#{emprestimoMB.autorizar()}"
+						value="Autorizar" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:body>
+	<h1>Novo Setor</h1>
+	<h:form>
+		<fieldset>
+			<legend>Dados de Setor</legend>
+			<h:panelGrid columns="2">
+				<h:outputLabel value=" Nome do setor: " for="nomesetor" />
+				<h:inputText id="nomesetor" value="#{setorMB.setor.nomeSetor}" />
+
+				<h:outputLabel value="Sigla: " for="sigla" />
+				<h:inputText id="sigla" value="#{setorMB.setor.sigla}"/>
+				
+				<h:commandButton value="Gravar" action="#{setorMB.gravar}" />
+
+			</h:panelGrid>
+		</fieldset>		
+	</h:form>
+	
+	<h:dataTable value="#{setorMB.setores}" var="setor" id="tabelaSetores">
+			<h:column>
+				<f:facet name="header">Nome do Setor</f:facet>
+				<h:outputText value="#{setor.nomeSetor}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Sigla do Setor</f:facet>
+				<h:outputText value="#{setor.sigla}" />
+			</h:column>
+	</h:dataTable>
+
+
+</h:body>
+
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:body>
+	<h1>Novo Fornecedor</h1>
+	<h:form>
+		<fieldset>
+			<legend>Dados de Fornecedor</legend>
+			<h:panelGrid columns="2">
+				<h:outputLabel value=" Razão Social: " for="razaosocial" />
+				<h:inputText id="razaosocial" value="#{fornecedorMB.fornecedor.razaoSocial}" />
+
+				<h:outputLabel value="CNPJ: " for="cnpj" />
+				<h:inputText id="cnpj" value="#{fornecedorMB.fornecedor.cnjp}"/>
+
+				<h:outputLabel value=" Telefone: " for="telefone" />
+				<h:inputText id="telefone" value="#{fornecedorMB.fornecedor.telefone}"/>
+
+				<h:outputLabel value="Email: " for="email" />
+				<h:inputText id="email" value="#{fornecedorMB.fornecedor.email}"/>
+				
+				<h:commandButton value="Gravar" action="#{fornecedorMB.gravar}" />
+
+			</h:panelGrid>
+		</fieldset>		
+	</h:form>
+	
+	<h:dataTable value="#{fornecedorMB.fornecedores}" var="fornecedor" id="tabelaFornecedores">
+			<h:column>
+				<f:facet name="header">Nome do Fornecedor</f:facet>
+				<h:outputText value="#{fornecedor.razaoSocial}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">CNPJ</f:facet>
+				<h:outputText value="#{fornecedor.cnjp}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Telefone</f:facet>
+				<h:outputText value="#{fornecedor.telefone}" />
+			</h:column>			
+			<h:column>
+				<f:facet name="header">Email</f:facet>
+				<h:outputText value="#{fornecedor.email}" />
+			</h:column>
+		</h:dataTable>
+
+
+</h:body>
+
+</html>

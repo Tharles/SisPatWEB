@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="conteudo">
+		<h:form id="formTabelaFornecedor">
+			<p:dataTable value="#{fornecedorMB.fornecedores}" var="forn"
+				border="1">
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Razão Social " />
+					</f:facet>
+					<h:outputText value="#{forn.razaoSocial}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="CNPJ" />
+					</f:facet>
+					<h:outputText value="#{forn.cnjp}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="telefone" />
+					</f:facet>
+					<h:outputText value="#{forn.telefone}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Email " />
+					</f:facet>
+					<h:outputText value="#{forn.email}" />
+				</p:column>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Remover " />
+					</f:facet>
+					<h:commandLink action="#{fornecedorMB.remover(forn)}"
+						value="Remover" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Editar " />
+					</f:facet>
+					<h:commandLink action="#{fornecedorMB.alterar(forn)}"
+						value="Editar" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="conteudo">
+		<h:form id="formTabelaCategoria">
+			<p:dataTable value="#{categoriaMB.categorias}" var="cat" border="1">
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Identificador " />
+					</f:facet>
+					<h:outputText value="#{cat.id}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Nome Categoria" />
+					</f:facet>
+					<h:outputText value="#{cat.nomeCategoria}" />
+				</p:column>
+	<p:column>
+					<f:facet name="header">
+						<h:outputText value="Remover " />
+					</f:facet>
+					<h:commandLink action="#{categoriaMB.remover(cat)}"
+						value="Remover" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Editar " />
+					</f:facet>
+					<h:commandLink action="#{categoriaMB.carrega(cat)}"
+						value="Editar" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+</html>
